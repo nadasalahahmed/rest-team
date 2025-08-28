@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Menu - Marco Restaurant</title>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .page-header {
+      background: url('https://preview.colorlib.com/theme/marco/img/top-banner.jpg.webp') center/cover no-repeat;
+      color: #fff;
+      padding: 120px 0;
+      text-align: center;
+      position: relative;
+    }
+
+    .page-header::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.5);
+    }
+
+    .page-header h1,
+    .page-header p {
+      position: relative;
+      z-index: 2;
+    }
+
+    .menu-tabs {
+      margin: 40px auto;
+      text-align: center;
+    }
+
+    .menu-tabs .nav-link {
+      border-radius: 30px;
+      margin: 0 5px;
+      color: #000;
+      font-weight: 600;
+    }
+
+    .menu-tabs .nav-link.active {
+      background-color: #dc3545;
+      color: #fff !important;
+    }
+
+    .menu-item {
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      margin-bottom: 20px;
+      transition: transform 0.3s;
+    }
+
+    .menu-item:hover {
+      transform: translateY(-5px);
+    }
+
+    .menu-item h5 {
+      font-weight: bold;
+    }
+
+    .menu-item .price {
+      color: #dc3545;
+      font-weight: bold;
+      float: right;
+    }
+
+     .reservation {
+      background: url('https://preview.colorlib.com/theme/marco/img/top-banner.jpg.webp') center/cover no-repeat;
+      color: #fff;
+      padding: 60px 0;
+      position: relative;
+    }
+
+    .reservation::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.6);
+    }
+
+    .reservation .container {
+      position: relative;
+      z-index: 2;
+    }
+
+    .reservation h2 {
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+
+    .reservation form input,
+    .reservation form select {
+      margin-bottom: 15px;
+    }
+
+    footer {
+      background: #dc3545;
+      color: #fff;
+      padding: 40px 0;
+    }
+
+    footer h5 {
+      font-weight: bold;
+      margin-bottom: 15px;
+    }
+
+    footer p,
+    footer a {
+      color: #fff;
+      margin: 0;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    .copyright {
+      text-align: center;
+      margin-top: 20px;
+      font-size: 0.9rem;
+      color: #f1f1f1;
+    }
+  </style>
+</head>
+
+<body>
+  <header class="page-header">
+    <div class="container">
+      <h1>Menus</h1>
+      <p><a href="Home.html" style="color:#fff;">Home</a> → Menus</p>
+    </div>
+  </header>
+
+  <div class="menu-tabs">
+    <ul class="nav justify-content-center" id="menuTabs" role="tablist">
+      <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#all">All Menus</a></li>
+      <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#breakfast">Breakfast</a></li>
+      <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#lunch">Lunch</a></li>
+      <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#dinner">Dinner</a></li>
+      <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#budget">Budget Meal</a></li>
+      <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#buffet">Buffet</a></li>
+    </ul>
+  </div>
+
+<div class="tab-content container pb-5">
+
+  <div class="tab-pane fade show active" id="all">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="menu-item">
+          <h5>Cappuccino <span class="price">$9</span></h5>
+          <p>Delicious cappuccino with milk foam.</p>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="menu-item">
+          <h5>Americano <span class="price">$74</span></h5>
+          <p>Strong espresso with hot water.</p>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="menu-item">
+          <h5>Grilled Chicken <span class="price">$12</span></h5>
+          <p>Served with vegetables and sauce.</p>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="menu-item">
+          <h5>Pasta Alfredo <span class="price">$34</span></h5>
+          <p>Creamy pasta with parmesan cheese.</p>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="menu-item">
+          <h5>Steak Special <span class="price">$45</span></h5>
+          <p>Grilled steak with garlic butter.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="tab-pane fade" id="breakfast">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="menu-item">
+          <h5>Cappuccino <span class="price">$88</span></h5>
+          <p>Delicious cappuccino with milk foam.</p>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="menu-item">
+          <h5>Americano <span class="price">$99</span></h5>
+          <p>Strong espresso with hot water.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="tab-pane fade" id="lunch">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="menu-item">
+          <h5>Grilled Chicken <span class="price">$112</span></h5>
+          <p>Served with vegetables and sauce.</p>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="menu-item">
+          <h5>Pasta Alfredo <span class="price">$10</span></h5>
+          <p>Creamy pasta with parmesan cheese.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="tab-pane fade" id="dinner">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="menu-item">
+          <h5>Steak Special <span class="price">$54</span></h5>
+          <p>Grilled steak with garlic butter.</p>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="menu-item">
+          <h5>Mocha <span class="price">$23</span></h5>
+          <p>Espresso mixed with chocolate and milk.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="tab-pane fade" id="budget">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="menu-item">
+          <h5>Sandwich Combo <span class="price">$98</span></h5>
+          <p>Sandwich + fries + soft drink.</p>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="menu-item">
+          <h5>Pizza Slice <span class="price">$66</span></h5>
+          <p>Single slice with toppings of choice.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="tab-pane fade" id="buffet">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="menu-item">
+          <h5>Buffet Standard <span class="price">$87</span></h5>
+          <p>All-you-can-eat lunch buffet.</p>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="menu-item">
+          <h5>Buffet Premium <span class="price">$34</span></h5>
+          <p>Includes drinks and desserts.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+  <section class="reservation">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <h2>Reserve Your Seats to Confirm if You Come with Your Family</h2>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et
+            dolore magna aliqua.</p>
+        </div>
+        <div class="col-md-6">
+          <form class="bg-white p-4 rounded">
+            <input type="text" class="form-control" placeholder="Your Name">
+            <input type="email" class="form-control" placeholder="Your Email Address">
+            <input type="text" class="form-control" placeholder="Phone Number">
+            <input type="datetime-local" class="form-control">
+            <select class="form-control">
+              <option>Select Event</option>
+              <option>Dinner</option>
+              <option>Birthday</option>
+              <option>Wedding</option>
+            </select>
+            <button class="btn btn-danger btn-block">Make Reservation</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4">
+          <h5>Opening Hours</h5>
+          <p>Monday - Friday: 08:00 am - 10:00 pm</p>
+          <p>Saturday: 09:00 am - 08:00 pm</p>
+          <p>Sunday: 09:00 am - 08:00 pm</p>
+        </div>
+        <div class="col-md-4">
+          <h5>Contact Us</h5>
+          <p>Los Angeles, rocky beach, Santa Monica.</p>
+          <p>010-1912-3923<br>010-1912-3923</p>
+        </div>
+        <div class="col-md-4">
+          <h5>Newsletter</h5>
+          <form>
+            <input type="email" class="form-control mb-2" placeholder="Your Email Address">
+            <button class="btn btn-dark btn-block">Subscribe</button>
+          </form>
+        </div>
+      </div>
+      <div class="copyright">&copy; 2025 Marco Restaurant. All rights reserved.</div>
+    </div>
+  </footer>
+  <script>
+    $(document).ready(function () {
+      var $grid = $('.menu-container').isotope({
+        itemSelector: '.menu-item',
+        layoutMode: 'fitRows'
+      });
+      $('#menu-filters li').on('click', function () {
+        $('#menu-filters li').removeClass('active');
+        $(this).addClass('active');
+        var filterValue = $(this).attr('data-filter');
+        $grid.isotope({ filter: filterValue });
+      });
+    });
+  </script>
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
