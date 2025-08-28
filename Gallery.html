@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Food Slider - Modern Design</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    body,
+    html {
+      margin: 0;
+      padding: 0;
+      font-size: 10px;
+      background: white;
+      color: #eee;
+      font-family: sans-serif;
+      transition: background 0.5s ease-in;
+    }
+
+    /* navbar design */
+    body.darkMode {
+      background-color: black;
+      color: white;
+    }
+
+    nav {
+      position: fixed;
+      height: 7rem;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      z-index: 1000;
+      background-color: rgb(56, 56, 56);
+      border-bottom: .2rem solid whitesmoke;
+      gap: 80rem;
+      top: 0rem;
+    }
+
+    .gap {
+      gap: 15rem;
+    }
+
+    .logo {
+      color: #fff;
+      font-size: 2rem;
+      background: none;
+      border: none;
+      cursor: pointer;
+      filter: drop-shadow(.2rem .2rem .5rem rgb(105, 105, 105));
+    }
+
+    .logo img {
+      width: 50%;
+    }
+
+    .toggle-container {
+      width: 3rem;
+      height: 3rem;
+      cursor: pointer;
+    }
+
+    .toggle-ball img {
+      width: 3rem;
+      border-radius: 50%;
+    }
+
+    .nav-links {
+      display: none;
+      list-style: none;
+      margin-right: 7rem;
+    }
+
+    .nav-links.show {
+      display: flex;
+      gap: 3rem;
+    }
+
+    .nav-links li a {
+      color: rgb(247, 247, 247);
+      font-size: 1.5rem;
+      text-decoration: none;
+      padding: 1rem;
+      border-radius: 2rem;
+    }
+
+    .nav-links li a:hover {
+      color: red;
+      border: .2rem solid red;
+    }
+
+
+
+    .categories {
+    margin-top: 10rem;
+    font-size: 3rem;
+    margin-left: 2rem;
+    font-family: cursive;
+    color: black;
+    transition: .5s;
+    position: relative;
+}
+
+.categories::after {
+    content: '';
+    position: absolute;
+    background: linear-gradient(to bottom right , red , rgb(69, 69, 69));
+    width: 20rem;
+    height: 10%;
+    top: 5rem;
+    bottom: 0%;
+    left: 0%;
+}
+
+.darkMode .categories {
+    color: white;
+    transition: .5s;
+}
+
+
+    .container {
+      margin: 5rem auto;
+    }
+
+    .food-card {
+      display: flex;
+      flex-direction: column;
+      background: white;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+      margin-top: 0;
+    }
+
+    @media (min-width: 992px) {
+      .food-card {
+        flex-direction: row;
+        height: 500px;
+      }
+    }
+
+    .image-section {
+      flex: 1;
+      position: relative;
+      padding: 30px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, #fff6eb 0%, #ffe9d6 100%);
+    }
+
+    .main-image {
+      width: 280px;
+      height: 280px;
+      border-radius: 50%;
+      object-fit: cover;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+      border: 8px solid white;
+    }
+
+    .thumbnails {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-top: 30px;
+    }
+
+    .thumb {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      object-fit: cover;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      border: 3px solid transparent;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .thumb:hover,
+    .thumb.active {
+      transform: scale(1.1);
+      border-color: #ff8c42;
+    }
+
+    .info-section {
+      flex: 1;
+      padding: 40px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .price {
+      color: red;
+      font-size: 4rem;
+      font-weight: 700;
+      margin-bottom: 15px;
+    }
+
+    .title {
+      font-size: 3rem;
+      font-weight: 700;
+      color: #2c2c2c;
+      margin-bottom: 20px;
+      line-height: 1.2;
+    }
+
+    .description {
+      color: #666;
+      line-height: 1.6;
+      margin-bottom: 30px;
+      font-size: 2rem;
+    }
+
+
+    .rating {
+      display: flex;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .stars {
+      color: #ffc107;
+      margin-right: 10px;
+      font-size: 2rem;
+    }
+
+    .nutrition-info {
+      display: flex;
+      gap: 2rem;
+      margin-bottom: 25px;
+    }
+
+    .nutrition-item {
+      text-align: center;
+      padding: 10px 15px;
+      background: #fff9f5;
+      border-radius: 15px;
+      flex: 1;
+    }
+
+    .nutrition-value {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: red;
+    }
+
+    .nutrition-label {
+      font-size: 1.5rem;
+      color: #888;
+      margin-top: 1rem;
+    }
+
+
+
+    footer {
+      background: #763a22;
+      color: #eee;
+      padding: 0rem 0rem;
+      margin-top: 0rem;
+    }
+
+    .foot-row {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .foot-links {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      padding: 3rem 0rem;
+    }
+
+    .foot-links a {
+      color: #eee;
+      text-decoration: none;
+      transition: 0.2s;
+      font-size: 1.3rem;
+    }
+
+    .foot-links a:hover {
+      color: #c73535;
+    }
+
+
+
+
+
+
+
+
+    @media (min-width:1000.99px) and (max-width:2000px) {
+      .col-1 {
+        width: 8.33%;
+      }
+
+      .col-2 {
+        width: 16.66%;
+      }
+
+      .col-3 {
+        width: 25%;
+      }
+
+      .col-4 {
+        width: 33.33%;
+      }
+
+      .col-5 {
+        width: 41.66%;
+      }
+
+      .col-6 {
+        width: 50%;
+      }
+
+      .col-7 {
+        width: 58.33%;
+      }
+
+      .col-8 {
+        width: 66.66%;
+      }
+
+      .col-9 {
+        width: 75%;
+      }
+
+      .col-10 {
+        width: 83.33%;
+      }
+
+      .col-11 {
+        width: 91.66%;
+      }
+
+      .col-12 {
+        width: 100%;
+      }
+    }
+
+
+
+    @media (min-width:700.99px) and (max-width:1000px) {
+      .col-md-1 {
+        width: 8.33%;
+      }
+
+      .col-md-2 {
+        width: 16.66%;
+      }
+
+      .col-md-3 {
+        width: 25%;
+      }
+
+      .col-md-4 {
+        width: 33.33%;
+      }
+
+      .col-md-5 {
+        width: 41.66%;
+      }
+
+      .col-md-6 {
+        width: 50%;
+      }
+
+      .col-md-7 {
+        width: 58.33%;
+      }
+
+      .col-md-8 {
+        width: 66.66%;
+      }
+
+      .col-md-9 {
+        width: 75%;
+      }
+
+      .col-md-10 {
+        width: 83.33%;
+      }
+
+      .col-md-11 {
+        width: 91.66%;
+      }
+
+      .col-md-12 {
+        width: 100%;
+      }
+
+
+      .gap {
+        gap: 1rem;
+      }
+
+
+      .thumbnails {
+        display: grid;
+        grid-template-columns: repeat(3, 45%);
+        gap: 3rem;
+        margin-left: 4rem;
+      }
+
+    }
+
+    @media screen and (max-width:700px) {
+      .col-sm-1 {
+        width: 8.33%;
+      }
+
+      .col-sm-2 {
+        width: 16.67%;
+      }
+
+      .col-sm-3 {
+        width: 25%;
+      }
+
+      .col-sm-4 {
+        width: 33.33%;
+      }
+
+      .col-sm-5 {
+        width: 41.67%;
+      }
+
+      .col-sm-6 {
+        width: 50%;
+      }
+
+      .col-sm-7 {
+        width: 58.33%;
+      }
+
+      .col-sm-8 {
+        width: 66.67%;
+      }
+
+      .col-sm-9 {
+        width: 75%;
+      }
+
+      .col-sm-10 {
+        width: 83.33%;
+      }
+
+      .col-sm-11 {
+        width: 91.67%;
+      }
+
+      .col-sm-12 {
+        width: 100%;
+      }
+
+      nav {
+        gap: 10rem;
+      }
+
+      .nav-links.show {
+        display: grid;
+        grid-template-columns: repeat(3, 30%);
+        gap: 4rem;
+        margin-right: 7rem;
+      }
+
+      .SmallHeight {
+        gap: 1rem;
+        height: 27rem;
+        flex-direction: column;
+        justify-content: space-around;
+      }
+
+      .gap {
+        gap: 2rem;
+      }
+
+
+      .thumbnails {
+        display: grid;
+        grid-template-columns: repeat(3, 35%);
+        gap: 3rem;
+        margin-left: 3rem;
+      }
+
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav class="col-12 col-md-12 col-sm-12" id="nav">
+    <div class="logoSection" id="logoSection">
+      <button class="logo" id="menu-toggle"><img
+          src="https://preview.colorlib.com/theme/marco/img/logo.png.webp" /></button>
+
+    </div>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="Home.html">Home</a></li>
+      <li><a href="Home.html">About</a></li>
+      <li><a href="Menu.html">Menu</a></li>
+      <li><a href="#">Gallery</a></li>
+      <li><a href="https://restaurantden.com/blog/">Blogs</a></li>
+      <li><a href="signin.html">Contact</a></li>
+    </ul>
+    <div class="toggle-container" onclick="toggleSwitch()">
+      <div class="toggle-ball">
+        <img src="https://img.icons8.com/?size=100&id=GIywaBFJCJiI&format=png&color=FA5252" id="ball" alt="Theme Icon">
+      </div>
+    </div>
+  </nav>
+
+
+
+  <section>
+    <h1 class="categories col-9 col-md-11 col-sm-11">Stay Tuned!</h1>
+  </section>
+
+
+
+
+
+  <div class="container">
+    <div class="food-card">
+
+      <div class="info-section">
+        <div class="price">$15</div>
+        <h1 class="title">S’mores Cupcakes</h1>
+
+        <div class="rating">
+          <div class="stars">
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star-half-alt"></i>
+          </div>
+        </div>
+
+        <p class="description">
+          S’mores Cupcakes are a delightful reimagining of the classic campfire s’more, transformed into a portable,
+          cupcake-friendly form. These treats typically feature a moist chocolate cupcake base, often with a layer of
+          graham cracker crust or crumbs for added texture
+        </p>
+
+        <div class="nutrition-info">
+          <div class="nutrition-item">
+            <div class="nutrition-value">420</div>
+            <div class="nutrition-label">Calories</div>
+          </div>
+          <div class="nutrition-item">
+            <div class="nutrition-value">32g</div>
+            <div class="nutrition-label">Protein</div>
+          </div>
+          <div class="nutrition-item">
+            <div class="nutrition-value">18g</div>
+            <div class="nutrition-label">Carbs</div>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div class="image-section">
+        <img
+          src="https://b1319836.smushcdn.com/1319836/wp-content/uploads/2020/03/No-Bake-Smores-Cupcakes_-9-683x1024.jpg?lossy=1&strip=1&webp=1"
+          class="main-image" id="main-img">
+        <div class="thumbnails">
+          <img
+            src="https://b1319836.smushcdn.com/1319836/wp-content/uploads/2020/03/No-Bake-Smores-Cupcakes_-9-683x1024.jpg?lossy=1&strip=1&webp=1"
+            class="thumb" onclick="changeFood(0)">
+          <img
+            src="https://www.bhg.com/thmb/enh0FYKRwxcZk693Mq5ibpqkLzY=/1244x0/filters:no_upscale():strip_icc()/dessert-pizza-banana-ice-cream-RU291978-324ea0da3faa4d2682479612b21d5586.jpg"
+            class="thumb" onclick="changeFood(1)">
+          <img src="https://images.immediate.co.uk/production/volatile/sites/30/2023/10/Pistachio-tiramisu-6d3d0da.jpg"
+            class="thumb" onclick="changeFood(2)">
+          <img src="https://cdn11.bigcommerce.com/s-cjh14ahqln/product_images/uploaded_images/tiramisu-web.jpg"
+            class="thumb" onclick="changeFood(3)">
+          <img
+            src="https://hips.hearstapps.com/hmg-prod/images/fruit-tart-index-65ef54d972bb1.jpg?crop=0.505xw:1.00xh;0.495xw,0&resize=640:*"
+            class="thumb" onclick="changeFood(4)">
+          <img
+            src="https://www.brit.co/media-library/strawberry-filled-chocolate-cake.jpg?id=34162741&width=1500&height=2000&quality=90&coordinates=0%2C56%2C0%2C57"
+            class="thumb" onclick="changeFood(5)">
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+
+
+
+  <footer>
+    <div class="foot-row">
+      <div style="font-size: 1.5rem; padding: 3rem 0rem;">&copy; 2025 Your Company. All rights reserved.</div>
+      <div class="foot-links">
+        <a href="#">FAQ</a>
+        <a href="#">News</a>
+        <a href="#">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    var navigation = document.getElementById("nav");
+    var menuToggle = document.getElementById("menu-toggle");
+    var links = document.getElementById("nav-links");
+    menuToggle.addEventListener("click", function () {
+      links.classList.toggle("show");
+      if (links.classList.contains("show")) {
+        navigation.classList.add("SmallHeight");
+        navigation.classList.add("gap");
+      } else {
+        navigation.classList.remove("SmallHeight");
+        navigation.classList.remove("gap");
+      }
+    });
+
+
+
+    function toggleSwitch() {
+      var ball = document.getElementById('ball');
+
+      document.body.classList.toggle('darkMode');
+
+      if (document.body.classList.contains("darkMode")) {
+        ball.src = "https://img.icons8.com/?size=100&id=54382&format=png&color=FA5252";
+      } else {
+        ball.src = "https://img.icons8.com/?size=100&id=GIywaBFJCJiI&format=png&color=FA5252";
+      }
+    }
+
+
+
+
+
+
+
+
+    var foods = [
+      {
+        title: "S’mores Cupcakes",
+        desc: "S’mores Cupcakes are a delightful reimagining of the classic campfire s’more, transformed into a portable, cupcake-friendly form. These treats typically feature a moist chocolate cupcake base, often with a layer of graham cracker crust or crumbs for added texture",
+        price: "$15",
+        img: "https://b1319836.smushcdn.com/1319836/wp-content/uploads/2020/03/No-Bake-Smores-Cupcakes_-9-683x1024.jpg?lossy=1&strip=1&webp=1"
+      },
+      {
+        title: "Pizza with Banana Ice Cream",
+        desc: "A blend of frozen bananas, a splash of unsweetened coconut milk, and vanilla extract, processed until silky-smooth. It can be enjoyed immediately as soft-serve or frozen longer for a scoopable texture",
+        price: "$32",
+        img: "https://www.bhg.com/thmb/enh0FYKRwxcZk693Mq5ibpqkLzY=/1244x0/filters:no_upscale():strip_icc()/dessert-pizza-banana-ice-cream-RU291978-324ea0da3faa4d2682479612b21d5586.jpg"
+      },
+      {
+        title: "Pistachio Tiramisu",
+        desc: "Pistachio Tiramisu is a delightful reimagining of the traditional Italian dessert, distinguished by its rich, nutty flavor and elegant green hue",
+        price: "$20",
+        img: "https://images.immediate.co.uk/production/volatile/sites/30/2023/10/Pistachio-tiramisu-6d3d0da.jpg"
+      },
+      {
+        title: "Classic Tiramisu",
+        desc: "This traditional Italian dessert features layers of coffee-soaked ladyfingers (savoiardi) intertwined with a rich, velvety mixture of mascarpone cheese, egg yolks, and sugar, all topped with a generous dusting of cocoa powder",
+        price: "$25",
+        img: "https://cdn11.bigcommerce.com/s-cjh14ahqln/product_images/uploaded_images/tiramisu-web.jpg"
+      },
+      {
+        title: "Fresh Fruit Tart",
+        desc: "Typically made with a sweet shortcrust pastry—such as pâte sucrée—or a press-in shortbread-like dough. The crust is baked first to ensure it's crisp and holds its shape.",
+        price: "$18",
+        img: "https://hips.hearstapps.com/hmg-prod/images/fruit-tart-index-65ef54d972bb1.jpg?crop=0.505xw:1.00xh;0.495xw,0&resize=640:*"
+      },
+      {
+        title: "Chocolate Strawberry Layer Cake",
+        desc: "This indulgent dessert is a beautifully layered Chocolate Strawberry Cake. It features rich, moist chocolate cake paired with a sweet and fruity strawberry filling—often made from roasted or preserved strawberries—paired with creamy frosting on top",
+        price: "$18",
+        img: "https://www.brit.co/media-library/strawberry-filled-chocolate-cake.jpg?id=34162741&width=1500&height=2000&quality=90&coordinates=0%2C56%2C0%2C57"
+      }
+    ];
+
+    function changeFood(index) {
+      
+      document.getElementById("main-img").src = foods[index].img;
+      document.querySelector(".title").textContent = foods[index].title;
+      document.querySelector(".description").textContent = foods[index].desc;
+      document.querySelector(".price").textContent = foods[index].price;
+
+      
+      var thumb = document.querySelectorAll(".thumb");
+      for (var i = 0; i < thumb.length; i++) {
+        if (i === index) {
+          thumb.classList.add("active");
+        } else {
+          thumb.classList.remove("active");
+        }
+      };
+    }
+  </script>
+</body>
+
+</html>
